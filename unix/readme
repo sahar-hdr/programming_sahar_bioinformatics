@@ -1,1 +1,29 @@
 
+Current directory>> . 
+Parent directory of the current directory>> ..
+Home directory>> ∼
+
+Long commands on the shell can be splitted into multiple lines:
+I Digit \ on the prompt at the end of a long incomplete command.
+I Press ENTER. The symbol > appears on a new line on the prompt.
+I Continue entering the command.
+
+List directory contents>> ls
+  The ls command accepts many optional arguments to make the listing more specific:
+  I The -F option shows / after each directory name, * after each executable file name, etc.
+  I The --color=auto (-G on OsX) option enables colorized output.
+  I The -l option lists in long format (permissions, username, groupname, size, creation date). 
+  I The -h options shows the file sizes in Byte, Kilobyte, etc.
+  
+Change directory>> cd
+Return working directory name>> pwd
+Change file modes or Access Control Lists>> chmod
+Copy files>> cp
+Move/rename files>> mv
+Remove directory entries>> rm
+Remove empty directories>> rmdir
+Create a directory>> mkdir
+Change file access and modification times>> touch
+Display the content of the file>> more/less
+Walk a file hierarchy>> find
+
