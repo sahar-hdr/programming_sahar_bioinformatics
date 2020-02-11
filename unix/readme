@@ -14,10 +14,29 @@ List directory contents>> ls
   I The --color=auto (-G on OsX) option enables colorized output.
   I The -l option lists in long format (permissions, username, groupname, size, creation date). 
   I The -h options shows the file sizes in Byte, Kilobyte, etc.
+  example: user$ ls -Flh --color=auto
+  *** We don’t have to digit all our favourite options every time we use the ls command,
+      we can create an alias. example: user$ alias ls=’ls -Fh --color=auto’
+  *** It is possible to use ls to list the content of a directory. example: user$ ls data/
   
 Change directory>> cd
+***In order to return back to the home directory it is sufficient to enter the cd command,
+without specifying a path name, or cd followed by ∼.
+
 Return working directory name>> pwd
+  prints the full path name of the current working directory
+  
 Change file modes or Access Control Lists>> chmod
+  The chmod command is used to change the permissions of a file or directory.
+  chmod <code> <file/directory>
+***Only the owner of the file can change its accession rights.
+***Example: we cannot execute a file that has no execution permissions.
+***Alternative syntax for the code parameter of chmod: 
+  u (owner), g (group), o (everybody)
+  + (add permission), - (remove permission)
+  r (read), w (write), x (execute)
+  example: user$ chmod u+x <file/directory>
+
 Copy files>> cp
 Move/rename files>> mv
 Remove directory entries>> rm
@@ -27,3 +46,18 @@ Change file access and modification times>> touch
 Display the content of the file>> more/less
 Walk a file hierarchy>> find
 
+The file permissions grants the rights to read (r), write (w), execute (x) the file:
+--- >> 0 = 000 in binary 
+--x >> 1 = 001 in binary
+-w- >> 2 = 010 in binary
+-wx >> 3 = 011 in binary
+r-- >> 4 = 100 in binary
+r-x >> 5 = 101 in binary
+rw- >> 6 = 110 in binary
+rwx >> 7 = 111 in binary
+*** There is a set of three bits for file’s owner, owner’s group and general users.
+    example: 777 means (rwxrwxrwx) No restriction on permissions. Anybody may do anything.
+    example: 644 means (rw-r--r--) The owner can read and write the file. The others can only read it.
+
+
+  
