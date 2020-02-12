@@ -129,13 +129,50 @@ rwx >> 7 = 111 in binary
     example: 644 means (rw-r--r--) The owner can read and write the file. The others can only read it.
 
 Basic information commands:
+
 man : Format and display the on-line manual pages
+  The man pages are the standard form of software documentation on Unix systems.
+  There is a man page for (almost) all command line-tools in the system.
+  There is a man page also for the man command.
+  Most of the commands accept the --help option that shows a short help and the
+  accepted command options.
+
 which : Locate a program file in the user’s path
-whereis : Locate programs
-whatis : Display one-line manual page descriptions.
+The which and whereis commands show path informations about the command line
+tools: very useful when we are not sure about the command currently executed.
+We can ask which executable is actually executed in the current environment
+user$ which ls 
+
 file : Determine file type
+The file command tries to classify the content of a file.
+user$ file new.txt script
+new . txt : ASCII text
+script : Bourne - Again shell script text executable
+
+whereis : Locate programs
+We can ask where is the executable, man page and source of the specified command
+user$ whereis ls
+ls : / bin / ls / usr / share / man / man1 / ls .1. gz
+
+whatis : Display one-line manual page descriptions.
+We can ask what is a specific command.
+user$ whatis ls
+ls (1)  - list directory contents
+
 df : Display free disk space
+It is quite common to run out of disk space while working with biological data.
+The df command shows global disk usage statistics.
+user$ df -h
+
 du : Display disk usage statistics
+The du command shows local disk usage statistics
+user$ du -h
+
+***In both cases, the -h option enables a Human-readable output (K, M, G, ..).
+
+Basic compression/decompression commands
+
+
 
 
 
