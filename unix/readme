@@ -128,5 +128,15 @@ rwx >> 7 = 111 in binary
     example: 777 means (rwxrwxrwx) No restriction on permissions. Anybody may do anything.
     example: 644 means (rw-r--r--) The owner can read and write the file. The others can only read it.
 
+Basic information commands:
+man : Format and display the on-line manual pages
+which : Locate a program file in the user’s path
+whereis : Locate programs
+whatis : Display one-line manual page descriptions.
+file : Determine file type
+df : Display free disk space
+du : Display disk usage statistics
+
+
 
   
