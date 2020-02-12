@@ -192,8 +192,40 @@ user$ tar cfz dir . tgz dir / user$ tar xfz dir . tgz
 Basic shell network utilities for login and managing files
 
 wget : The non-interactive network downloader
+The wget utility is the most versatile option to download files from Internet. It supports
+the HTTP and FTP protocols.
+To download a file with wget it is sufficient to pass as argument the url of the file.
+The file will be saved in the current directory.
+wget " http :// predictionce n t e r . org / download_area / CASP13 / predictions / contacts / RR
+With the -r option we can download recursively the content of an entire directory.
+wget -r " http :// pred i c t i o n c e n t e r . org / download_area / CASP13 / predictions / con
+It is always a good idea to protect the url with "" in order to avoid problems when
+the url contains characters that have a special meaning on the shell (for example, &).
+
 scp : Secure copy (remote file copy program)
+The scp utility allows files to be copied to, from, or between different hosts.
+The syntax of scp is quite similar to those of cp with the difference that we need to
+specify the remote host from or to which we want to transfer files.
+scp u s e r n a m e @ re m o t e h o s t . edu :/ home / username / file1 . txt .
+scp file2 . txt u s e r na m e @ r e m o t e h o s t . edu :/ home / username /
+These command copy file1.txt and file2.txt respectively from and to the home
+directory of username on remotehost.
+The scp command support the recursive copy option -r.
+Clearly, to use scp we need to have an account to some remote machine.
+
 ssh : OpenSSH SSH client (remote login program)
+Secure SHell, ssh, is a program for logging into a remote machine.
+We need to have an account to the remote machine in order to login.
+It provides a secure connection (encrypted communications) between the local machine
+and the remote machine.
+Notably, the password needed to login into the machine is encrypted as well.
+Basic usage of ssh:
+user$ ssh u s e r n a me @ r e m o t e h o s t . edu
+u s e r n am e @ r e m o t e h os t . edu ’ s password :
+The remote connection opens a remote shell on the local terminal.
+We can work on the remote machine as if it was local.
+Note: local and remote machine do not share their respective file systems. In order to
+transfer files between the two machines we need to use some other tool, such as scp.
 
 
 
