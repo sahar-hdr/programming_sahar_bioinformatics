@@ -553,3 +553,48 @@ If we want to show only the lines in the second file that are not in the first f
 
 ***All these commands, but diff and comm, read from the standard input.
 
+Regular expressions
+
+A regular expression is a pattern that describes a set of strings.
+Regular expressions are more powerful than glob patters: we can rewrite every glob
+pattern as a regular expression, but not conversely.
+Regular expressions are used by several Unix commands, including grep, awk and sed.
+The following table lists some of the meta-characters we can use in regular expressions.
+
+. Matches any single character
+* The preceding item is matched zero or more times
+^ Matches the position at the beginning of the string
+[ ] Match any one of the characters enclosed in [ ]
+[^ ] Match any character except those enclosed in [ ]
+$ Matches the position at the end of the string
+{N} The preceding item is matched exactly N times
+{N,} The preceding item is matched N or more times
+{N,M} The preceding item is matched at least N and at most M times
+\ Turn on or off the meaning of a metacharacter
+
+The following table lists some of the meta-characters of extended regular expressions.
+? The preceding item is matched at most once
++ The preceding item is matched one or more times
+(<exp1> | <exp2>) Matches either the expression exp1 or exp2
+
+Regular expressions: examples 1/2
+
+abc Any string containing abc
+a.c Any string containing aac, abc, acc, ...
+a\.c  Any string containing a.c
+a*c Any string containing c, ac, aac, aaac, aaaac, ...
+^abc  Any string beginning with abc
+abc$  Any string ending with abc
+^abc$ abc
+^$  Any empty string
+[abc]bc Any string contining abc, bbc, cbc
+[^abc]bc  Any string containing dbc, ebc, fbc, ...
+a{3}bc  Any string containing aaabc
+a{3,}bc Any string containing aaabc, aaaabc, aaaaabc, ...
+a{3,4}bc  Any string containing aaabc, aaaabc
+a?bc  Any string containing bc, abc
+a+bc  Any string containing abc, aabc, aaabc, ...
+a\+bc Any string containing a+bc
+a(b|c)  Any string containing ab, ac
+
+
