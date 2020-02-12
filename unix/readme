@@ -55,6 +55,17 @@ Copy files>> cp
   
   
 Move/rename files>> mv
+  The mv command can be used to move files and directories, as well as to rename them.
+  Move a file into a directory: user$ mv file tmp/
+  ***If the directory already contains a file with the same name, it is overwritten.
+  Move a directory into a directory: user$ mv tmp/ data/
+  ***If the target contains a file/directory with the same name, the command fails.
+  Rename a file: user$ mv data/tmp/file data/tmp/file.txt
+  Rename a directory: user$ mv data / d
+  ***If the target directory already exists, the command moves the source directory into
+  the target directory.
+  
+  
 Remove directory entries>> rm
 Remove empty directories>> rmdir
 Create a directory>> mkdir
