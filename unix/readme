@@ -227,6 +227,60 @@ We can work on the remote machine as if it was local.
 Note: local and remote machine do not share their respective file systems. In order to
 transfer files between the two machines we need to use some other tool, such as scp.
 
+Some other miscellaneous commands
+
+echo : Write arguments to the standard output
+The echo command is built-in in the Unix shell.
+It is not properly related to the manipulation of files, it simply writes on the terminal
+its arguments.
+user$ echo Hello , World !
+Hello , World !
+
+The -n option does not add a newline after the argument has been printed.
+user$ echo -n Hello , World !
+Hello , World ! user$
+
+We can protect the string-argument with " " characters. These are not printed.
+In the argument string we can include some formatting characters, such as tabs. In
+order to use these formatting characters we need to protect the string with "" and use
+the -e option.
+user$ echo -e " Hello ,\ t \ t \ tWorld !"
+Hello ,
+World !
+user$ echo " Hello ,\ t \ t \ tWorld !"
+Hello ,\ t \ t \ tWorld !
+
+Despite its simplicity, it can be very useful in complex scripts to print, for example,
+error messages or other informations.
+
+bc : An arbitrary precision calculator language
+The tool bc is a command-line arbitrary-precision calculator language.
+When we work on a Unix terminal, it is useful to have a command-line calculator.
+The typical usage of the bc tool is to type bc on the prompt and enter a mathematical
+expression.
+
+user$ bc
+bc 1.06.95
+Copyright 1991 -1994 , 1997 , 1998 , 2000 , 2004 , 2006 Free Software Foundation ,
+This is free software with ABSOLUTELY NO WARRANTY .
+For details type ‘ warranty ’.
+1+2
+3
+
+To quit the program we write quit on the prompt or we press CNTRL-D.
+One of the most important features of bc is that it accepts input from files and from
+the standard input (this will be clearer later).
+
+rev : Reverse lines characterwise
+The rev command reverses each line of a file.
+
+user$ rev script
+hsab / nib /!#
+"! dlroW , olleH " ohce
+
+This command is not very powerful, although it can be useful in bioinformatics analyses
+to reverse nucleotide sequences.
+As bc, it accepts input from the standard input
 
 
 
