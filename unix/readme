@@ -494,10 +494,62 @@ Duplicated lines can be removed with the -u option: user$ sort -k 1 -n -u kmer1 
 Sort ordering can be reversed with the -r option: user$ sort -k 1 -n -u -r kmer1 . txt
 
 uniq  Report or filter out repeated lines in a file
+The uniq command filters out or prints consecutive duplicated lines.
+Duplicated lines are filtered out only if they are consecutive.
+***We can print only the duplicated lines with the -d option: user$ uniq -d kmer1 . txt
+***The following command is an alternative to the -u option of the sort command:
+user$ sort -k 1 -n  kmer1 . txt | uniq
+
 cut Cut out selected portions of each line of a file
+The cut command can be used to select single columns from a file.
+By default, cut assumes that the columns are tab-separated.
+user$ cut -f 1 kmer2 . txt
+We can use a specific delimiter character instead of the tab (including space): user$ cut -f 1 -d ’A ’ kmer2 . txt
+***The delimiter should be a single character.
+It is possible to print the column at a specific character position, range of positions
+and sets of position. We can specify, range and sets of positions also when using a
+field separator.
+user$ cut -c 5 kmer2 . txt
+user$ cut -c 4 -6 kmer2 . txt
+user$ cut -c 1 ,4 ,6 kmer2 . txt
+user$ cut -c 2 ,4 kmer2 . txt
+***The tab is considered a single character.
+
 wc  Word, line, character, and byte count
+The wc command calculates some statistics about the contente of files
+Count the number of lines with the -l option
+user$ wc  -l kmer1 . txt kmer2 . txt
+Count the number of characters with the -c option: user$ wc -c kmer1 . txt
+***The counting includes the (not printable) newline characters
+Count the number of words with the -w option:user$ wc -w kmer2 . txt
+***A word is every consecutive sequence of non-withespace characters.
+If we pass to wc the content of the file from the standard input, the output shows
+uniquely the result of the computation: user$ cat kmer1 . txt | wc -l
+
 diff  Compare files line by line
+The diff command compares files line by line. The original diff program implements
+the Hunt-McIlroy algorithm for the the longest common subsequence problem.
+The < and > symbols in the output mean that the line appears in file1 and file2,
+respectively.
+user$ diff kmer1 . code . txt kmer2 . code . txt
+It has several optional arguments, such as ignore whitespace (-b), ignore cases (-i).
+We can report uniquely whether the file differ or not with the -q option.
+user$ diff -q kmer1 . txt kmer2 . txt
+***If the two files are equal the command is silent: user$ diff -q kmer1 . txt kmer1 . txt
+
 comm  Select or reject lines common to two files
+The comm command compares two files by showing common and different lines. It
+should be used on sorted files. The output is shown on three tab-separated columns:
+I Column 1: line in file 1
+I Column 2: line in file 2
+I Column 3: line in both file 1 and file 2
+
+user$ sort kmer1 . txt > k1 . txt
+user$ sort kmer2 . txt > k2 . txt
+user$ comm k1 . txt k2 . txt
+We can suppress the printing of one or more of the three columns.
+If we want to show only the common lines in the two files: user$ comm -1 -2 k1 . txt k2 . txt
+If we want to show only the lines in the second file that are not in the first file: user$ comm -1 -3 k1 . txt k2 . txt
 
 ***All these commands, but diff and comm, read from the standard input.
 
