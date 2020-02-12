@@ -67,9 +67,27 @@ Move/rename files>> mv
   
   
 Remove directory entries>> rm
+  The rm command can be used to remove files and directories.
+  Remove a file: user$ rm d/tmp/data/1a2b.fasta
+  ***Warning: the deletion is permanent!
+  Remove an empty directory: user$ rmdir d / tmp / data
+  ***If the directory is not empty, the rmdir command fails.
+  Remove a non-empty directory: user$ rm -r d / tmp
+  
+
 Remove empty directories>> rmdir
+  user$ rmdir d / tmp / data
+  ***If the directory is not empty, the rmdir command fails.
+  
 Create a directory>> mkdir
+  The mkdir command creates a new empty directory: user$ mkdir tmp
+  
+  
 Change file access and modification times>> touch
+  The touch command creates a new empty file.
+  user$ touch tmp / file . txt
+  ***If we touch an existing file, we change its access and modification times.
+
 Display the content of the file>> more/less
 Walk a file hierarchy>> find
 
