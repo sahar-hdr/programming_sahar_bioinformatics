@@ -97,6 +97,23 @@ Display the content of the file>> more/less
   The more command is the primitive version of less.
   
 Walk a file hierarchy>> find
+  The find command searches for files in the directory hierarchy.
+  Simplified syntax
+  find <search path> -<search type> <search argument>
+  The search path option specifies the starting directory of the search.
+  The command has several options. We can search a file by name, size, permissions,
+  etc by using the correct search type option. We list just few of them:
+  -name <pattern>: Searches a file by its name (pattern)
+  -user <uname>: Searches files owned by uname
+  -size n[cwbkMG]: Searches files using n units of space (c=bytes,M=MB, ..)
+  -perm <mode>: Searches files whose permissions are exactly mode
+  Example: search all files in the home directory with all the permissions.
+  user$ find ~ - perm 777
+  Example: search all files of size 10Mb that belong to the pippo user.
+  user$ find / home - user pippo - size 10 M
+  Example: search all files in the current directory whose name is data.txt
+  user$ find . - name data . txt
+
 
 The file permissions grants the rights to read (r), write (w), execute (x) the file:
 --- >> 0 = 000 in binary 
