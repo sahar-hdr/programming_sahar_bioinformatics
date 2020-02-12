@@ -38,6 +38,22 @@ Change file modes or Access Control Lists>> chmod
   example: user$ chmod u+x <file/directory>
 
 Copy files>> cp
+  The cp command creates copies of files or directories.
+  General syntax for making a copy of a file:
+  cp <source file> <target file>
+  example: 
+  > user$ cp kmer1 . txt file
+  > user$ ls
+  > data/ file kmer1 . txt kmer2 . txt
+  ***If the target file already exists, it is overwritten with the source file.
+  General syntax for making a copy of the entire content of a directory:
+  cp -r <source directory> <target directory>
+  ***If the target directory already exists, the source directory is copied into it.
+  General syntax for copying a set of files and/or directories into a directory:
+  cp -r <source file/dir1> <source file/dir2> ... <target directory>
+  
+  
+  
 Move/rename files>> mv
 Remove directory entries>> rm
 Remove empty directories>> rmdir
