@@ -89,6 +89,13 @@ Change file access and modification times>> touch
   ***If we touch an existing file, we change its access and modification times.
 
 Display the content of the file>> more/less
+  The content of very long files can be paged on the screen with the less command.
+  We can scroll the file content by using the up and down arrows.
+  The : at the bottom of the page are the prompt of the less command.
+  In order to close the command, we have to digit q in the prompt.
+  We can search for a pattern/string in the file by typing / followed by the string we want to search.
+  The more command is the primitive version of less.
+  
 Walk a file hierarchy>> find
 
 The file permissions grants the rights to read (r), write (w), execute (x) the file:
