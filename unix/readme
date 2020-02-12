@@ -418,4 +418,86 @@ user$ ls < / etc / passwd
 The ls does not read the text coming from the standard input, thus this command
 will simply print the content of the current directory.
 
+Pipes
+
+The most useful redirection tool in the Unix shell is the redirection of the output of a
+command to the input of another command.
+The construct that allows this form of redirection is called pipe (|). Thanks to pipes
+we can implement on the shell complex pipelines of commands.
+The following is a simple way to easily inspect a long list of files in the current directory
+user$ ls -l | less
+
+The following is a simple way to quickly execute calculations with bc.
+user$ echo "11^2*123+ sqrt (10)" | bc -l
+14886.16227766016837933199
+
+The -l option enables float precision to 20 decimal places, otherwise the operations
+are performed in the domain of integers.
+We can pipe multiple commands.
+user$ echo "11^2*123+ sqrt (10)" | bc -l | rev
+99133973861066772261.68841
+
+Except for the first command, it is possible to include in a pipeline only commands
+that read from the standard input.
+It is possible to redirect the final output of the pipeline to a file.
   
+Duplicate output stream
+
+If we redirect the output to a file, we cannot send it also to a pipe.
+Example: the output is sent to a file and not to the rev command, which does not
+receive input.
+user$ echo "11^2*123+ sqrt (10)" | bc -l > result . txt | rev
+user$ cat result . txt
+14886.16227766016837933199
+In some pipelines, it can be useful i to save partially-processed output.
+The tee command can be used to duplicate the output stream.
+We can use tee in a pipeline to send the partially processed output to a file and, at
+the same time, send it to the standard output.
+user$ echo "11^2*123+ sqrt (10)" | bc -l | tee result . txt | rev
+99133973861066772261.68841
+user$ cat result . txt
+14886.16227766016837933199
+We can specify more than one file name as argument for tee: the output is duplicated
+in each specified file.
+The -a option appends the output in the specified files.
+
+
+Basic shell text manipulation commands
+
+cat Concatenate and print files
+The cat command prints the content of a file on the terminal.
+The cat command can be used to concatenate the content of multiple files
+The following two ways of copying a file are perfectly equivalent.
+user$ cat < old . txt > new . txt
+user$ cp old . txt new . txt
+
+head  Display first lines of a file
+The head command shows the first lines of a file. We can specify the number of lines
+we want to see with the -n option (n should be substituted with a number).
+
+tail  Display the last part of a file
+The tail command shows the last lines of a file. Same syntax as the head command.
+***We can use tail to show the last lines starting from some offset:
+example: user$ tail -n +4 kmer . txt
+The content of the kmer.txt file is printed starting from the fourth line.
+Note: in some implementations the -n syntax is available also by the head command,
+i.e. head -n -4 prints all the lines but the last 4.
+By default, head and tail print the first and last 10 lines of the file, respectively.
+
+sort  Sort lines of text files
+The sort command sorts text lines. We can sort lexicographically, numerically and
+with respect to specific column(s).
+Default: lexicographic sort the entire file content, line by line.
+Sort with respect to a specific column: user$ sort -k 2 kmer1 . txt
+Numeric sort can be imposed with the -n option: user$ sort -k 1 -n kmer1 . txt
+Duplicated lines can be removed with the -u option: user$ sort -k 1 -n -u kmer1 . txt
+Sort ordering can be reversed with the -r option: user$ sort -k 1 -n -u -r kmer1 . txt
+
+uniq  Report or filter out repeated lines in a file
+cut Cut out selected portions of each line of a file
+wc  Word, line, character, and byte count
+diff  Compare files line by line
+comm  Select or reject lines common to two files
+
+***All these commands, but diff and comm, read from the standard input.
+
