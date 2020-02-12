@@ -172,6 +172,31 @@ user$ du -h
 
 Basic compression/decompression commands
 
+gzip/gunzip : Compress or expand files
+Compression/decompression with gzip. Works on single files, not directories. Repla-
+ces the original file with the compressed one.
+
+zip/unzip : Package and compress (archive) files
+Compression/decompression with zip. Works on single files and directories. Creates
+a compressed copy of the file.
+Compression/decompression of entire directories.
+user$ zip -r dir . zip dir / user$ unzip dir . zip
+
+tar : Manipulate tape archives
+Compression/decompression with tar. Works on single files and directories. Creates
+a compressed copy of the file.
+user$ tar cfz file . tgz file . txt / user$ tar xfz file . tgz
+Compression/decompression of entire directories.
+user$ tar cfz dir . tgz dir / user$ tar xfz dir . tgz
+
+Basic shell network utilities for login and managing files
+
+wget : The non-interactive network downloader
+scp : Secure copy (remote file copy program)
+ssh : OpenSSH SSH client (remote login program)
+
+
+
 
 
 
