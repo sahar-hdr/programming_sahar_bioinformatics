@@ -282,9 +282,140 @@ This command is not very powerful, although it can be useful in bioinformatics a
 to reverse nucleotide sequences.
 As bc, it accepts input from the standard input
 
+Wildcard
 
+The Unix shell provides a set of special characters, wildcards, that can be used to
+specify a single pattern that matches multiple file names.
 
+* : Matches any number of any character, including none
+? : Matches any single character
+[abc] : Matches one character given in the bracket
+[a-z] : Matches one character from the range given in the bracket
+[!abc] : Matches any character that is not given in the bracket
+[!a-z] : Matches any character that is not in the range given in the bracket
+{aa,bb,cc} : Expands/generate any pattern that is given in the list
 
+The process of matching expressions containing wildcards to filenames is called wild-
+card/filename expansion or globbing.
+Globbing is quite useful to execute commands on multiple files without the need of
+listing all the file names.
+The brace expansion {}, is similar to filename expansion but the names generated do
+not need to be existing filenames.
 
+List all files whose names ends with .txt
+user$ ls *. txt
+
+Copy all files whose names begin with a capital letter and contain at least three
+characters.
+user$ cp [A - Z ]??* tmp /
+
+Remove execution permission to all files that end with .txt and that do not contain
+the x character in their name.
+user$ chmod -x *[! x ]*. txt
+
+The shell performs filenames expansion whenever it sees unquoted wildcards in com-
+mand’s arguments. For example,
+user$ echo *
+
+prints all the file and directory names in the current directory.
+The following command uses brake expansion to generate all nucleotide 3-mers.
+user$ echo {A ,C ,G , T }{ A ,C ,G , T }{ A ,C ,G , T }
+
+The following command moves in the doc/ directory all files ending with .txt or .pdf
+user$ mv *.{ txt , pdf } doc /
+
+Certain classes of characters are available as special patterns:
+
+[:lower:] Lower case characters a-z
+[:upper:] Upper case characters A-Z
+[:alpha:] Alphabetic characters: [:lower:] + [:upper:]
+[:digit:] Decimal digits: 0-9
+[:xdigit:] Exadecimal digits: 0-9, a-f, A-F
+[:alnum:] Alphanumeric characters: [:alpha:] + [:digit:]
+[:space:] Whitespace characters: spaces, tabs, newlines, etc
+[:punct:] Punctuation characters:
+[:graph:] Graphically printable characters: [:punct:]+[:alnum:]
+[:print:] Printable characters: [:graph:] + [:space:]
+[:cntrl:] Control characters: non-printable characters
+
+We can use predifined classes in glob patterns.
+Example: print all file names whose name begins with a letter and end with .txt.
+user$ ls [[: alpha :]]*. txt
+
+Redirection is used to control where the output of a command goes to, and where the
+input of a command comes from.
+In a Unix shell there are three files open by default and connected to the terminal.
+
+Name  FD
+stdin 0 Standard input stream (e.g. keyboard)
+stdout  1 Standard output stream (e.g. monitor)
+stderr  2 Standard error output stream (usually on monitor)
+
+Both stdout and stderr are output streams. The only difference is that the stderr
+stream is used specifically to output error and diagnostic messages.
+
+The following table summarizes the most common redirection commands:
+
+cmd > file  Redirects the standard output of cmd to file
+cmd 2> file Redirects the standard error output of cmd to file
+cmd &> file Redirects the standard output and error of cmd to file
+cmd > file1 2> file2  Redirects the standard output of cmd to file1 and error to file2
+cmd >> file Appends the redirected standard output of cmd to the end of file
+cmd 2>> file  Appends the redirected standard error of cmd to the end of file
+cmd < file  cmd takes the standard input from file
+cmd1 | cmd2 Takes the standard output of cmd1 as standard input for cmd2
+
+We can redirect program’s standard output and standard output error to files.
+We can send the output of the ls command to a file.
+user$ ls -l > lsout . txt
+
+The following command
+user$ ls a * b * > lsout . txt
+saves into lsout.txt file the names of the files or directories beginning with a or b.
+If there is no file/directory whose name begins with a or b an error message is printed
+on the standard error (e.g. on the terminal).
+
+If we are interested to save only the error messages, we can redirect uniquely the
+standard error output
+user$ ls a * b * 2 > lserr . txt
+
+We can redirect both standard output and error to the same file
+user$ ls a * b * & > ls . txt
+
+We can redirect separately standard output and standard error output. It can be
+sometimes useful to silence the error output by redirecting it to the null device
+user$ ls a * b * > lsout . txt 2 > / dev / null
+
+A redirection to an existing file overwrites its content. We can avoid to overwrite the
+content of a file by appending the output to it.
+The following command
+user$ ls c * d * >> lsout . txt
+appends to the lsout.txt file the output of the ls command.
+
+In the same way, we can append also the standard error output
+user$ ls c * d * 2 > > lserr . txt
+
+The append syntax doesn’t always work with the &> command
+user$ ls c * d * & > > ls . txt
+- bash : syntax error near unexpected token ‘>’
+In order to do this in a portable way, we need to send the standard error (file descriptor
+2) to the standard output (file descriptor 1) by using the 2>&1 construct.
+user$ ls c * d * >> ls . txt 2 >&1
+
+Input redirection
+
+Though standard input redirection is less common (and useful) than standard output
+redirection, it can be used to read the standard input directly from a file.
+As an example, we can send input to the less command by redirecting it from a file:
+user$ less < / etc / passwd
+This is perfectly equivalent to the following command:
+user$ less / etc / passwd
+In both cases, the content of the file passwd will be processed with less
+
+Not all commands can read from the standard input. On such commands it makes no
+sense to use the input redirection construct.
+user$ ls < / etc / passwd
+The ls does not read the text coming from the standard input, thus this command
+will simply print the content of the current directory.
 
   
